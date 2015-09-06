@@ -19,22 +19,23 @@ int main() {
   int line = -1, lines = 1;
 
   while ( ! q.empty()) {
-    if (line + 1 + q.front() <= w) {
+    if (line + 1 + q.front() <= w) { // can place this word on the same line
       line += q.front() + 1;
       q.pop();
     } else {
-      if (lines + 1 <= h) {
+      if (lines + 1 <= h) { // can we add more lines to this page?
         ++lines;
       } else {
-        ++ans;
-        lines = 0;
+        ++ans; // need a new page
+        lines = 1;
       }
 
       line = -1;
     }
   }
 
-  if (line > 0) {
+  // check if we can place this line on the same page
+  if (lines > 0) {
     ++ans;
   }
 
